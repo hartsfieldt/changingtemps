@@ -1,6 +1,6 @@
 # My Weather Dashboard
 
-<img src="./assets/images/" alt="screenshot of the daily planner" height="300px"/>
+<img src="./assets/images/" alt="screenshot of weather dashboard" height="300px"/>
 
 ## Purpose
 
