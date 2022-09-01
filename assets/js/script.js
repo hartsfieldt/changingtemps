@@ -1,7 +1,8 @@
-var APIKey = "1f2f85ceec6572234552e9c8ad7aaae0";
+// API Call
 
-var retrieveUsersInput = function (city) {
-    var apiURL = "https://api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&appid={API key}";
+
+var retrieveUsersInput = function (usersInputEl) {
+    var apiURL = "https://api.openweathermap.org/data/2.5/weather?q=" + usersInputEl + "&appid=1f2f85ceec6572234552e9c8ad7aaae0";
 
     fetch(apiUrl).then(function(response) {
         console.log(response);
