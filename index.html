@@ -50,48 +50,49 @@
         <div class="col-we col-md-8" id="">
             <div class="text-start .card-body mb-3" id="current-weather">
               <h2 class="card-header text-uppercase bg-primary">Showing Current Weather for:<span id="city"></span></h2>
-                <div id="currentTemp" class="card-body card text-bg-primary">test1</div>
-                <div id="currentWind" class="card-body card text-bg-primary">test2</div>
-                <div id="currentHumidity" class="card-body card text-bg-primary">test3</div>
-                <div id="currentUvIndex" class="card-body card text-bg-primary">test4</div>
-                <div id="fiveday-forecast" class="mt-3 .card-body card text-bg-primary">
+              <div id="todaysDate" class="card-body card text-bg-primary"></div>
+              <div id="currentTemp" class="card-body card text-bg-primary"></div>
+                <div id="currentWind" class="card-body card text-bg-primary"></div>
+                <div id="currentHumidity" class="card-body card text-bg-primary"></div>
+                <div id="currentUvIndex" class="card-body card text-bg-primary"></div>
+                <div id="fiveday-forecast-container" class="mt-3 .card-body card text-bg-primary">
                   <h2 class="card-header text-uppercase bg-primary mb-3">Five Day Forecast</h2>
                   <div class="container text-start">
-                    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                    <div id="fiveday-weather-cards" class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
                       <div class="col" id="tempOne">
-                          <div class="p-3 border bg-light">Date</div>
-                          <div class="p-3 border bg-light">Insert Weather Icon Here</div>
-                          <div class="p-3 border bg-light">Temp</div>
-                          <div class="p-3 border bg-light">Wind</div>
-                          <div class="p-3 border bg-light">Humidity</div>
+                          <div id="tempOne-day" class="p-3 border bg-light"></div>
+                          <div id="tempOne-icon"class="p-3 border bg-light"></div>
+                          <div id="tempOne-temp"class="p-3 border bg-light"></div>
+                          <div id="tempOne-wind"class="p-3 border bg-light"></div>
+                          <div id="tempOne-humidity"class="p-3 border bg-light"></div>
                         </div>
-                        <div class="col" id="tempOne">
-                          <div class="p-3 border bg-light">Date</div>
-                          <div class="p-3 border bg-light">Insert Weather Icon Here</div>
-                          <div class="p-3 border bg-light">Temp</div>
-                          <div class="p-3 border bg-light">Wind</div>
-                          <div class="p-3 border bg-light">Humidity</div>
+                        <div class="col" id="tempTwo">
+                          <div id="tempTwo-day" class="p-3 border bg-light"></div>
+                          <div class="p-3 border bg-light"></div>
+                          <div id="tempTwo-temp" class="p-3 border bg-light"></div>
+                          <div id="tempTwo-wind" class="p-3 border bg-light"></div>
+                          <div id="tempTwo-humidity" class="p-3 border bg-light"></div>
                         </div>
-                        <div class="col" id="tempOne">
-                          <div class="p-3 border bg-light">Date</div>
-                          <div class="p-3 border bg-light">Insert Weather Icon Here</div>
-                          <div class="p-3 border bg-light">Temp</div>
-                          <div class="p-3 border bg-light">Wind</div>
-                          <div class="p-3 border bg-light">Humidity</div>
+                        <div class="col" id="tempThree">
+                          <div id="tempThree-day" class="p-3 border bg-light"></div>
+                          <div class="p-3 border bg-light"></div>
+                          <div id="tempThree-temp" class="p-3 border bg-light"></div>
+                          <div id="tempThree-wind" class="p-3 border bg-light"></div>
+                          <div id="tempThree-humidity" class="p-3 border bg-light"></div>
                         </div>
-                        <div class="col" id="tempOne">
-                          <div class="p-3 border bg-light">Date</div>
-                          <div class="p-3 border bg-light">Insert Weather Icon Here</div>
-                          <div class="p-3 border bg-light">Temp</div>
-                          <div class="p-3 border bg-light">Wind</div>
-                          <div class="p-3 border bg-light">Humidity</div>
+                        <div class="col" id="tempFour">
+                          <div id="tempFour-day" class="p-3 border bg-light"></div>
+                          <div class="p-3 border bg-light"></div>
+                          <div id="tempFour-temp"class="p-3 border bg-light"></div>
+                          <div id="tempFour-wind"class="p-3 border bg-light"></div>
+                          <div id="tempFour-humidity" class="p-3 border bg-light"></div>
                         </div>
-                        <div class="col" id="tempOne">
-                          <div class="p-3 border bg-light">Date</div>
-                          <div class="p-3 border bg-light">Insert Weather Icon Here</div>
-                          <div class="p-3 border bg-light">Temp</div>
-                          <div class="p-3 border bg-light">Wind</div>
-                          <div class="p-3 border bg-light">Humidity</div>
+                        <div class="col" id="tempFive">
+                          <div id="tempFive-day" class="p-3 border bg-light"></div>
+                          <div class="p-3 border bg-light"></div>
+                          <div id="tempFive-temp" class="p-3 border bg-light"></div>
+                          <div id="tempFive-wind" class="p-3 border bg-light"></div>
+                          <div id="tempFive-humidity" class="p-3 border bg-light"></div>
                         </div>
                       </div>
                     </div>
