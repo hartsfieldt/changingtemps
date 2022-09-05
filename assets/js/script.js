@@ -57,8 +57,6 @@ var getWeather = function (lat, lon) {
                 imageIcon.setAttribute("src", "http://openweathermap.org/img/wn/"+ data.current.weather[0].icon +"@2x.png");
                 displayCityEl.append(imageIcon);
 
-<<<<<<< HEAD
-=======
                 // let imageTempIcon = document.createElement("img");
                 // imageTempIcon.setAttribute("src", "http://openweathermap.org/img/wn/"+ data.daily[1].weather.icon +"@2x.png");
                 // tempOne-icon.append(imageTempIcon);
@@ -147,6 +145,3 @@ userFormEl.addEventListener("submit", formSubmitHandler);
 var displayWeather = function(data) {
     console.log(data);
   };
-
-
->>>>>>> develop
