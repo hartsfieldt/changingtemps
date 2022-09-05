@@ -1,4 +1,6 @@
-
+header {
+  background-image: url(../images/Different-Weather-Types.jpeg);
+}
 
 .flex-container {
     display: flex;

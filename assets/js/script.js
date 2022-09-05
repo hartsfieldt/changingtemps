@@ -4,19 +4,15 @@ var userFormEl = document.querySelector("#user-form");
 var citySearchTermEl = document.querySelector("#city-search-term");
 var currentWeatherEl = document.querySelector("#current-weather");
 var displayCityEl = document.querySelector("#city");
-var currentDayEl = document.getElementById("currentDay");
 var todaysDateEl = document.getElementById("todaysDate");
 var searchHistoryContainerEl = document.querySelector("#search-history-container");
-var tempOneIcon = document.querySelector("#tempOne-icon");
+
 
 const apiKey = "c6a9bf78cf3b504fe7e8382ca53765c4";
 
 // Created the dates to  list for each weather card.
-var todaysDate = moment();
-currentDayEl.textContent = todaysDate.format("LLLL");
-
 var datesListed = moment();
-todaysDateEl.textContent = datesListed.format("ll");
+todaysDateEl.textContent = datesListed.format("LLLL");
 let tomorrow = document.querySelector("#tempOne-day");
 tomorrow.textContent = moment().add(1, "days").format("ll");
 let tomorrow2 = document.querySelector("#tempTwo-day");
@@ -65,9 +61,10 @@ var getWeather = function (lat, lon) {
                 // imageTempIcon.setAttribute("src", "http://openweathermap.org/img/wn/"+ data.daily[1].weather.icon +"@2x.png");
                 // tempOne-icon.append(imageTempIcon);
 
-            //get current weather first; temp, wind, humid, uv index
+            //Get current and feature (5day) weather; temp, wind, humid, uv index.
                 let currentTemp = document.querySelector("#currentTemp");
                 currentTemp.innerHTML = "Temperature: " + data.current.temp + " °F";
+
                 let currentWindEl = document.querySelector("#currentWind");
                 currentWindEl.innerHTML = "Wind Speed: " + data.current.wind_speed + " MPH";
                 let currentHumidityEl = document.querySelector("#currentHumidity");
@@ -75,7 +72,6 @@ var getWeather = function (lat, lon) {
                 let currentUvIndexEl = document.querySelector("#currentUvIndex");
                 currentUvIndexEl.innerHTML = "UV Index: " + data.current.uvi + " Out of 10";
 
-            // get id=fiveday-weather-cards
                 let tempOneTempEl = document.querySelector("#tempOne-temp");
                 tempOneTempEl.innerHTML = "Temp: " + data.daily[1].temp.day + " °F";
                 let tempOneWindEl = document.querySelector("#tempOne-wind");
@@ -89,7 +85,7 @@ var getWeather = function (lat, lon) {
                 tempTwoWindEl.innerHTML = "Wind: " + data.daily[2].wind_speed  + " MPH";
                 let tempTwoHumidityEl = document.querySelector("#tempTwo-humidity");
                 tempTwoHumidityEl.innerHTML = "Humidity: " + data.daily[2].humidity + "%";
-            
+
                 let tempThreeTempEl = document.querySelector("#tempThree-temp");
                 tempThreeTempEl.innerHTML = "Temp: " + data.daily[3].temp.day + " °F";
                 let tempThreeWindEl = document.querySelector("#tempThree-wind");
@@ -134,10 +130,12 @@ var formSubmitHandler = function(event) {
         alert("Please enter a valid city");
       }
     for (let i = 0; i < recentSearch.length; i++) {
-     console.log(recentSearch[i])
+     console.log(recentSearch[i]);
      let btnEl = document.createElement("button")
+     btnEl.classList = "btn btn-success mb-3";
      btnEl.textContent = recentSearch[i]
      searchHistoryContainerEl.appendChild(btnEl);
+
     };
     console.log(event);
   };

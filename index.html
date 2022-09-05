@@ -21,21 +21,20 @@
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css"
     />
     <link rel="stylesheet" href="./assets/css/styles.css"/>
-    <title>My Weather Dashboard</title>
+    <title class="text-center">My Weather Dashboard</title>
 </head>
 <body>
-    <header class="navbar navbar-dark bg-primary mb-3">
-        <h1>My Weather Dashboard</h1>
-        <span id="currentDay"></span>
+    <header class="jumbotron jumbotron-fluid mb-3">
+        <h1 class="text-center text-white">My Weather Dashboard</h1>
     </header>
     <main class="flex-container">
-        <div class="col-we col-md-4 text-center">
+        <div class="col-we col-md-4">
           <div id="search-form" class="card mb-3">
-            <h3 class="card-header text-uppercase bg-primary">Weather Search</h3>
-            <form id="user-form" class="card-body">
+            <h3 class="card-header text-uppercase bg-primary text-center">Weather Search</h3>
+            <form id="user-form" class="card-body text-center">
               <label>Current Weather Conditions in:</label>
               <input name="city" id="city-search-term" type="text" autofocus="true" class="form-input"/><br>
               <button type="submit" class="btn btn-primary mt-3">Get Weather</button>
@@ -47,9 +46,9 @@
           </div>
         </div>
 
-        <div class="col-we col-md-8" id="">
+        <div class="col-we col-md-8">
             <div class="text-start .card-body mb-3" id="current-weather">
-              <h2 class="card-header text-uppercase bg-primary">Showing Current Weather for: <span id="city"></span></h2>
+              <h2 class="card-header text-uppercase bg-primary">Showing Current Weather for:<br><span id="city"></span></h2>
               <div id="todaysDate" class="card-body card text-bg-primary"></div>
               <div id="currentTemp" class="card-body card text-bg-primary"></div>
                 <div id="currentWind" class="card-body card text-bg-primary"></div>
@@ -59,37 +58,37 @@
                   <h2 class="card-header text-uppercase bg-primary mb-3">Five Day Forecast</h2>
                   <div class="container text-start">
                     <div id="fiveday-weather-cards" class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-                      <div class="col" id="tempOne">
+                      <div class="col">
                           <div id="tempOne-day" class="p-3 border bg-light"></div>
-                          <div id="tempOne-icon"class="p-3 border bg-light"></div>
+                          <div id="icon1"class="p-3 border bg-light"></div>
                           <div id="tempOne-temp"class="p-3 border bg-light"></div>
                           <div id="tempOne-wind"class="p-3 border bg-light"></div>
                           <div id="tempOne-humidity"class="p-3 border bg-light"></div>
                         </div>
-                        <div class="col" id="tempTwo">
+                        <div class="col">
                           <div id="tempTwo-day" class="p-3 border bg-light"></div>
-                          <div class="p-3 border bg-light"></div>
+                          <div id="icon2" class="p-3 border bg-light"></div>
                           <div id="tempTwo-temp" class="p-3 border bg-light"></div>
                           <div id="tempTwo-wind" class="p-3 border bg-light"></div>
                           <div id="tempTwo-humidity" class="p-3 border bg-light"></div>
                         </div>
-                        <div class="col" id="tempThree">
+                        <div class="col">
                           <div id="tempThree-day" class="p-3 border bg-light"></div>
-                          <div class="p-3 border bg-light"></div>
+                          <div id="icon3"class="p-3 border bg-light"></div>
                           <div id="tempThree-temp" class="p-3 border bg-light"></div>
                           <div id="tempThree-wind" class="p-3 border bg-light"></div>
                           <div id="tempThree-humidity" class="p-3 border bg-light"></div>
                         </div>
-                        <div class="col" id="tempFour">
+                        <div class="col">
                           <div id="tempFour-day" class="p-3 border bg-light"></div>
-                          <div class="p-3 border bg-light"></div>
+                          <div id="icon4"class="p-3 border bg-light"></div>
                           <div id="tempFour-temp"class="p-3 border bg-light"></div>
                           <div id="tempFour-wind"class="p-3 border bg-light"></div>
                           <div id="tempFour-humidity" class="p-3 border bg-light"></div>
                         </div>
-                        <div class="col" id="tempFive">
+                        <div class="col">
                           <div id="tempFive-day" class="p-3 border bg-light"></div>
-                          <div class="p-3 border bg-light"></div>
+                          <div id="icon5"class="p-3 border bg-light"></div>
                           <div id="tempFive-temp" class="p-3 border bg-light"></div>
                           <div id="tempFive-wind" class="p-3 border bg-light"></div>
                           <div id="tempFive-humidity" class="p-3 border bg-light"></div>
