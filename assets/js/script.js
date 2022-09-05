@@ -1,15 +1,16 @@
 var userFormEl = document.querySelector("#user-form");
-var nameInputEl = document.querySelector("#city");
-var todaysWeather = document.querySelector("#todays-weather");
-var citySearchTerm = document.querySelector("#city-search-term");
-var currentDay = document.getElementById("currentDay");
+var citySearchTermEl = document.querySelector("#city-search-term");
+var currentWeatherEl = document.querySelector("#current-weather");
+var displayCityEl = document.querySelector("#city");
+var currentDayEl = document.getElementById("currentDay");
+
 
 var todaysDate = moment();
-currentDay.textContent = todaysDate.format("LLLL");
+currentDayEl.textContent = todaysDate.format("LLLL");
 
-const apiKey = "1f2f85ceec6572234552e9c8ad7aaae0";
+const apiKey = "c6a9bf78cf3b504fe7e8382ca53765c4";
 
-
+//calling the API function to get the lat and lon values.
 var retrieveUsersInput = function (city) {
     var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=" + apiKey;
 
@@ -17,7 +18,43 @@ var retrieveUsersInput = function (city) {
         if (response.ok) {
             response.json().then(function(data) {
               console.log(data);
-                displayCity(data, city);
+                var lat = data[0].lat;
+                var lon = data[0].lon;
+                console.log(lat, lon);
+                displayCityEl.textContent = city;
+                return getWeather(lat, lon);
+            })
+          } else {
+            alert("Error: City Not Found");
+          }
+        });
+};
+// Retrieve weather; daily and forecast.
+var getWeather = function (lat, lon) {
+    var apiUrl = "http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
+
+    fetch(apiUrl).then(function(response) {
+        if (response.ok) {
+            response.json().then(function(data) {
+              console.log(data);
+
+            //get current weather first; temp, wind, humid, uv index
+                let currentTemp = document.querySelector("#currentTemp");
+                currentTemp.innerHTML = data.current.temp;
+                console.log(currentTemp);
+                let currentWindEl = document.querySelector("#currentWind");
+                currentWindEl.innerHTML = data.current.wind_speed;
+                let currentHumidityEl = document.querySelector("#currentHumidity");
+                currentHumidityEl.innerHTML = data.current.humidity;
+                let currentUvIndexEl = document.querySelector("#currentUvIndex");
+                currentUvIndexEl.innerHTML = data.current.uvi;
+            
+            // get forecast - repeat like current weather create divs and create ids
+            // var temp1 = document.querySelector("#temp
+            // temp1.innerHTML = data.daily[1].
+                //return
+
+                displayWeather(data);
             })
           } else {
             alert("Error: City Not Found");
@@ -25,13 +62,14 @@ var retrieveUsersInput = function (city) {
         });
 };
 
+
 var formSubmitHandler = function(event) {
     event.preventDefault();
-    var cityName = nameInputEl.value.trim();
+    var cityName = citySearchTermEl.value.trim();
 
     if (cityName) {
         retrieveUsersInput(cityName);
-        nameInputEl.value = "";
+        citySearchTermEl.value = "";
       } else {
         alert("Please enter a valid city");
       }
@@ -40,19 +78,7 @@ var formSubmitHandler = function(event) {
 
 userFormEl.addEventListener("submit", formSubmitHandler);
 
-var displayWeather = function(city, searchTerm) {
-    console.log(city);
-    console.log(searchTerm);
-    todaysWeather.textContent = "";
-    citySearchTerm.textContent = searchTerm;
+var displayWeather = function(data) {
+    console.log(data);
+    currentWeatherEl.textContent = "Todays Weather is...";
   };
-
-
-
-
-// var callAPI (onclick,API call, search city, return, display and store data.)
-// create variable for; accepting user input, using the API key search and retrieve data, return the information back to the website and load, then store.
-// presented with current and future conditions
-// When viewing the weather conditions for the city I am presented with: city name, the date, an icon representing the weather condition are favorable, moderate, severe.
-// 5 day forecast; Display the date, icon with the weather conditions, temperature, the wind speed, and humidity.
-// stored cities: if I click a previously visited city, the current weather conditions will be displayed.
