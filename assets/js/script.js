@@ -1,16 +1,17 @@
+var recentSearch = JSON.parse(localStorage.getItem("cityName")) || [];
+
 var userFormEl = document.querySelector("#user-form");
 var citySearchTermEl = document.querySelector("#city-search-term");
 var currentWeatherEl = document.querySelector("#current-weather");
 var displayCityEl = document.querySelector("#city");
 var currentDayEl = document.getElementById("currentDay");
 var todaysDateEl = document.getElementById("todaysDate");
-var searchFormHistory = document.getElementById("recent-search");
-
-recentSearch = [""];
+var searchHistoryContainerEl = document.querySelector("#search-history-container");
+var tempOneIcon = document.querySelector("#tempOne-icon");
 
 const apiKey = "c6a9bf78cf3b504fe7e8382ca53765c4";
 
-// Created the dates to  list for each weather card. 
+// Created the dates to  list for each weather card.
 var todaysDate = moment();
 currentDayEl.textContent = todaysDate.format("LLLL");
 
@@ -50,58 +51,65 @@ var retrieveUsersInput = function (city) {
 
 // Retrieve weather; daily and forecast.
 var getWeather = function (lat, lon) {
-    var apiUrl = "http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
+    var apiUrl = "http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=" + apiKey;
 
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
             response.json().then(function(data) {
               console.log(data);
+                let imageIcon = document.createElement("img");
+                imageIcon.setAttribute("src", "http://openweathermap.org/img/wn/"+ data.current.weather[0].icon +"@2x.png");
+                displayCityEl.append(imageIcon);
+
+                // let imageTempIcon = document.createElement("img");
+                // imageTempIcon.setAttribute("src", "http://openweathermap.org/img/wn/"+ data.daily[1].weather.icon +"@2x.png");
+                // tempOne-icon.append(imageTempIcon);
 
             //get current weather first; temp, wind, humid, uv index
                 let currentTemp = document.querySelector("#currentTemp");
-                currentTemp.innerHTML = data.current.temp;
+                currentTemp.innerHTML = "Temperature: " + data.current.temp + " °F";
                 let currentWindEl = document.querySelector("#currentWind");
-                currentWindEl.innerHTML = data.current.wind_speed;
+                currentWindEl.innerHTML = "Wind Speed: " + data.current.wind_speed + " MPH";
                 let currentHumidityEl = document.querySelector("#currentHumidity");
-                currentHumidityEl.innerHTML = data.current.humidity;
+                currentHumidityEl.innerHTML = "Humidity: " + data.current.humidity + "%";
                 let currentUvIndexEl = document.querySelector("#currentUvIndex");
-                currentUvIndexEl.innerHTML = data.current.uvi;
+                currentUvIndexEl.innerHTML = "UV Index: " + data.current.uvi + " Out of 10";
 
             // get id=fiveday-weather-cards
                 let tempOneTempEl = document.querySelector("#tempOne-temp");
-                tempOneTempEl.innerHTML = data.daily[2];
+                tempOneTempEl.innerHTML = "Temp: " + data.daily[1].temp.day + " °F";
                 let tempOneWindEl = document.querySelector("#tempOne-wind");
-                tempOneWindEl.innerHTML = data.daily[3];
+                tempOneWindEl.innerHTML = "Wind: " + data.daily[1].wind_speed  + " MPH";
                 let tempOneHumidityEl = document.querySelector("#tempOne-humidity");
-                tempOneHumidityEl.innerHTML = data.daily[4]
+                tempOneHumidityEl.innerHTML = "Humidity: " + data.daily[1].humidity + "%";
 
                 let tempTwoTempEl = document.querySelector("#tempTwo-temp");
-                tempTwoTempEl.innerHTML = data.daily[2];
+                tempTwoTempEl.innerHTML = "Temp: " + data.daily[2].temp.day + " °F";
                 let tempTwoWindEl = document.querySelector("#tempTwo-wind");
-                tempTwoWindEl.innerHTML = data.daily[3];
+                tempTwoWindEl.innerHTML = "Wind: " + data.daily[2].wind_speed  + " MPH";
                 let tempTwoHumidityEl = document.querySelector("#tempTwo-humidity");
-                tempTwoHumidityEl.innerHTML = data.daily[4]
-
+                tempTwoHumidityEl.innerHTML = "Humidity: " + data.daily[2].humidity + "%";
+            
                 let tempThreeTempEl = document.querySelector("#tempThree-temp");
-                tempThreeTempEl.innerHTML = data.daily[2];
+                tempThreeTempEl.innerHTML = "Temp: " + data.daily[3].temp.day + " °F";
                 let tempThreeWindEl = document.querySelector("#tempThree-wind");
-                tempThreeWindEl.innerHTML = data.daily[3];
+                tempThreeWindEl.innerHTML = "Wind: " + data.daily[3].wind_speed  + " MPH";
                 let tempThreeHumidityEl = document.querySelector("#tempThree-humidity");
-                tempThreeHumidityEl.innerHTML = data.daily[4]
+                tempThreeHumidityEl.innerHTML = "Humidity: " + data.daily[3].humidity + "%";
 
                 let tempFourTempEl = document.querySelector("#tempFour-temp");
-                tempFourTempEl.innerHTML = data.daily[2];
+                tempFourTempEl.innerHTML = "Temp: " + data.daily[4].temp.day + " °F";
                 let tempFourWindEl = document.querySelector("#tempFour-wind");
-                tempFourWindEl.innerHTML = data.daily[3];
+                tempFourWindEl.innerHTML = "Wind: " + data.daily[4].wind_speed  + " MPH";
                 let tempFourHumidityEl = document.querySelector("#tempFour-humidity");
-                tempFourHumidityEl.innerHTML = data.daily[4]
+                tempFourHumidityEl.innerHTML = "Humidity: " + data.daily[4].humidity + "%";
 
                 let tempFiveTempEl = document.querySelector("#tempFive-temp");
-                tempFiveTempEl.innerHTML = data.daily[2];
+                tempFiveTempEl.innerHTML = "Temp: " + data.daily[5].temp.day + " °F";
                 let tempFiveWindEl = document.querySelector("#tempFive-wind");
-                tempFiveWindEl.innerHTML = data.daily[3];
+                tempFiveWindEl.innerHTML = "Wind: " + data.daily[5].wind_speed  + " MPH";
                 let tempFiveHumidityEl = document.querySelector("#tempFive-humidity");
-                tempFiveHumidityEl.innerHTML = data.daily[4]
+                tempFiveHumidityEl.innerHTML = "Humidity: " + data.daily[5].humidity + "%";
 
                 displayWeather(data);
             })
@@ -112,8 +120,12 @@ var getWeather = function (lat, lon) {
 };
 
 var formSubmitHandler = function(event) {
+    searchHistoryContainerEl.innerHTML = "";
     event.preventDefault();
     var cityName = citySearchTermEl.value.trim();
+    console.log(recentSearch)
+    recentSearch.push(cityName);
+    localStorage.setItem("cityName", JSON.stringify(recentSearch));
 
     if (cityName) {
         retrieveUsersInput(cityName);
@@ -121,6 +133,12 @@ var formSubmitHandler = function(event) {
       } else {
         alert("Please enter a valid city");
       }
+    for (let i = 0; i < recentSearch.length; i++) {
+     console.log(recentSearch[i])
+     let btnEl = document.createElement("button")
+     btnEl.textContent = recentSearch[i]
+     searchHistoryContainerEl.appendChild(btnEl);
+    };
     console.log(event);
   };
 
@@ -130,5 +148,4 @@ var displayWeather = function(data) {
     console.log(data);
   };
 
-var searchHistoryLog = function() {
-}
+
