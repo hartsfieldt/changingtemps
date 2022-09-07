@@ -14,6 +14,7 @@ var icon5 = document.getElementById("icon5");
 
 
 
+
 const apiKey = "c6a9bf78cf3b504fe7e8382ca53765c4";
 
 // Created the dates to  list for each weather card.
@@ -140,7 +141,6 @@ var getWeather = function (lat, lon) {
                 let tempFiveHumidityEl = document.querySelector("#tempFive-humidity");
                 tempFiveHumidityEl.innerHTML = "Humidity: " + data.daily[5].humidity + "%";
 
-                displayWeather(data);
             })
           } else {
             alert("Error: City Not Found");
@@ -153,7 +153,7 @@ var formSubmitHandler = function(event) {
     event.preventDefault();
     var cityName = citySearchTermEl.value.trim();
     console.log(recentSearch)
-    recentSearch.push(cityName);
+    recentSearch.unshift(cityName);
     localStorage.setItem("cityName", JSON.stringify(recentSearch));
 
     if (cityName) {
@@ -168,15 +168,26 @@ var formSubmitHandler = function(event) {
      btnEl.classList = "btn btn-success mb-3";
      btnEl.textContent = recentSearch[i]
      searchHistoryContainerEl.appendChild(btnEl);
-
     };
     console.log(event);
   };
 
 userFormEl.addEventListener("submit", formSubmitHandler);
 
-var displayWeather = function(data) {
-    console.log(data);
-  };
-
-
+  for (let i = 0; i < recentSearch.length; i++) {
+    console.log('from last for loop>>>', recentSearch[i]);
+    let btnEl = document.createElement("button")
+    btnEl.classList = "btn btn-success mb-3";
+    btnEl.textContent = recentSearch[i]
+    searchHistoryContainerEl.appendChild(btnEl);
+   };
+  
+   document.getElementById('search-history-container').addEventListener("click", function () {
+      var isButton = event.target.nodeName === 'BUTTON';
+      if (!isButton) {
+        return;
+      }
+        retrieveUsersInput(event.target.textContent);
+        console.log(event.target.textContent)
+      
+   });
