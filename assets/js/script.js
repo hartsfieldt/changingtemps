@@ -174,11 +174,6 @@ var formSubmitHandler = function(event) {
 
 userFormEl.addEventListener("submit", formSubmitHandler);
 
-<<<<<<< HEAD
-var displayWeather = function(data) {
-    console.log(data);
-  };
-=======
   for (let i = 0; i < recentSearch.length; i++) {
     console.log('from last for loop>>>', recentSearch[i]);
     let btnEl = document.createElement("button")
@@ -186,7 +181,7 @@ var displayWeather = function(data) {
     btnEl.textContent = recentSearch[i]
     searchHistoryContainerEl.appendChild(btnEl);
    };
-  
+
    document.getElementById('search-history-container').addEventListener("click", function () {
       var isButton = event.target.nodeName === 'BUTTON';
       if (!isButton) {
@@ -194,6 +189,4 @@ var displayWeather = function(data) {
       }
         retrieveUsersInput(event.target.textContent);
         console.log(event.target.textContent)
-      
    });
->>>>>>> develop
