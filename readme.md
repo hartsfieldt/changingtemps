@@ -18,8 +18,6 @@ The user must be presented with:
 
 ## Website
 
-https://hartsfieldt.github.io/changingtemps/
-
 ## Git Hub
 
 https://github.com/hartsfieldt/changingtemps/
