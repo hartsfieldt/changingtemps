@@ -87,7 +87,7 @@ var getWeather = function (lat, lon) {
                 } else {
                   console.log(currentUvScore);
                 };
-
+                //I know I can make this more DRY but I am out of time. I will continue to work on this.
                 let tempOneTempEl = document.querySelector("#tempOne-temp");
                 tempOneTempEl.innerHTML = "Temp: " + data.daily[1].temp.day + " °F";
                 let tempOneWindEl = document.querySelector("#tempOne-wind");
