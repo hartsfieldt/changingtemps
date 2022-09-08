@@ -27,7 +27,7 @@ tomorrow5.textContent = moment().add(5, "days").format("ll");
 
 //calling the API function to get the lat and lon values.
 var retrieveUsersInput = function (city) {
-    var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=" + apiKey;
+    var apiUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=" + apiKey;
 
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
@@ -47,7 +47,7 @@ var retrieveUsersInput = function (city) {
 
 // Retrieve weather; daily and forecast.
 var getWeather = function (lat, lon) {
-    var apiUrl = "http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=" + apiKey;
+    var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=" + apiKey;
 
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
