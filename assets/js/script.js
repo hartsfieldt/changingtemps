@@ -6,13 +6,6 @@ var currentWeatherEl = document.querySelector("#current-weather");
 var displayCityEl = document.querySelector("#city");
 var todaysDateEl = document.getElementById("todaysDate");
 var searchHistoryContainerEl = document.querySelector("#search-history-container");
-var icon1 = document.getElementById("icon1");
-var icon2 = document.getElementById("icon2");
-var icon3 = document.getElementById("icon3");
-var icon4 = document.getElementById("icon4");
-var icon5 = document.getElementById("icon5");
-
-
 
 
 const apiKey = "c6a9bf78cf3b504fe7e8382ca53765c4";
@@ -64,26 +57,15 @@ var getWeather = function (lat, lon) {
                 imageIcon.setAttribute("src", "http://openweathermap.org/img/wn/"+ data.current.weather[0].icon +"@2x.png");
                 displayCityEl.append(imageIcon);
 
-                let weatherIcon1 = document.createElement("img");
-                weatherIcon1.setAttribute("src", "http://openweathermap.org/img/wn/"+ data.daily[1].weather[0].icon +"@2x.png");
-                icon1.append(weatherIcon1);
-
-                let weatherIcon2 = document.createElement("img");
-                weatherIcon2.setAttribute("src", "http://openweathermap.org/img/wn/"+ data.daily[2].weather[0].icon +"@2x.png");
-                icon2.append(weatherIcon2);
-
-                let weatherIcon3 = document.createElement("img");
-                weatherIcon3.setAttribute("src", "http://openweathermap.org/img/wn/"+ data.daily[3].weather[0].icon +"@2x.png");
-                icon3.append(weatherIcon3);
-
-                let weatherIcon4 = document.createElement("img");
-                weatherIcon4.setAttribute("src", "http://openweathermap.org/img/wn/"+ data.daily[4].weather[0].icon +"@2x.png");
-                icon4.append(weatherIcon4);
-
-                let weatherIcon5 = document.createElement("img");
-                weatherIcon5.setAttribute("src", "http://openweathermap.org/img/wn/"+ data.daily[5].weather[0].icon +"@2x.png");
-                icon5.append(weatherIcon5);
-
+                for (let i = 1; i < 6; i++) {
+                  if (!document.getElementById("icon" + i).firstChild) {
+                    let weatherIcon = document.createElement("img");
+                    weatherIcon.setAttribute("src", "http://openweathermap.org/img/wn/"+ data.daily[i].weather[0].icon +"@2x.png");
+                    document.getElementById("icon" + i).append(weatherIcon);
+                  } else {
+                    document.getElementById("icon" + i).firstChild.src = "http://openweathermap.org/img/wn/"+ data.daily[i].weather[0].icon +"@2x.png"
+                  }
+                }
 
             //Get current and feature (5day) weather; temp, wind, humid, uv index.
                 let currentTemp = document.querySelector("#currentTemp");
@@ -148,32 +130,38 @@ var getWeather = function (lat, lon) {
         });
 };
 
+//Combined my City retrieval, setting the array, capping the array, and creating the buttons in one expression.
 var formSubmitHandler = function(event) {
-    searchHistoryContainerEl.innerHTML = "";
-    event.preventDefault();
-    var cityName = citySearchTermEl.value.trim();
-    console.log(recentSearch)
-    recentSearch.unshift(cityName);
-    localStorage.setItem("cityName", JSON.stringify(recentSearch));
-
-    if (cityName) {
-        retrieveUsersInput(cityName);
-        citySearchTermEl.value = "";
-      } else {
-        alert("Please enter a valid city");
+  document.getElementById('current-weather').style.display = ''
+  searchHistoryContainerEl.innerHTML = "";
+  event.preventDefault();
+  var cityName = citySearchTermEl.value.trim();
+  if (cityName) {
+      retrieveUsersInput(cityName);
+      citySearchTermEl.value = "";
+      recentSearch.unshift(cityName);
+      if (recentSearch.length > 10) {
+        recentSearch.pop()
       }
-    for (let i = 0; i < recentSearch.length; i++) {
-     console.log(recentSearch[i]);
-     let btnEl = document.createElement("button")
-     btnEl.classList = "btn btn-success mb-3";
-     btnEl.textContent = recentSearch[i]
-     searchHistoryContainerEl.appendChild(btnEl);
-    };
-    console.log(event);
-  };
+      localStorage.setItem("cityName", JSON.stringify(recentSearch));
+
+      for (let i = 0; i < recentSearch.length; i++) {
+       console.log(recentSearch[i]);
+       let btnEl = document.createElement("button")
+       btnEl.classList = "btn btn-success mb-3";
+       btnEl.textContent = recentSearch[i]
+       searchHistoryContainerEl.appendChild(btnEl);
+      };
+    } else {
+      alert("Please enter a valid city");
+      window.location.reload();
+    }
+  console.log(recentSearch)
+  console.log(event);
+};
 
 userFormEl.addEventListener("submit", formSubmitHandler);
-
+   //When a user clicks a previously listed city search, render current weather conditions again. If the user much click on the button and not within the box. 
   for (let i = 0; i < recentSearch.length; i++) {
     console.log('from last for loop>>>', recentSearch[i]);
     let btnEl = document.createElement("button")

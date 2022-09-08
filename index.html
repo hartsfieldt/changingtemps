@@ -5,24 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css"
-    />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/styles.css"/>
     <title class="text-center">My Weather Dashboard</title>
 </head>
@@ -47,7 +33,7 @@
         </div>
 
         <div class="col-we col-md-8">
-            <div class="text-start .card-body mb-3" id="current-weather">
+            <div class="text-start .card-body mb-3" id="current-weather" style="display: none">
               <h2 class="card-header text-uppercase bg-primary">Showing Current Weather for:<br><span id="city"></span></h2>
               <div id="todaysDate" class="card-body card text-bg-primary"></div>
               <div id="currentTemp" class="card-body card text-bg-primary"></div>
@@ -99,16 +85,16 @@
             </div>
         </div>
 
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-        <script src="./assets/js/script.js"></script>
     </main>
     <footer class="text-center bg-primary pb-3">
-      <h2>❤️ Made with love by Teresa Hartsfield.</h2>
+      <h2>❤️ Made with love by Teresa Hartsfield</h2>
       <h4>UV Index Guide</h4><br>
       <span class="favorable">Favorable Conditions</span>
       <span class="moderate">Moderate Conditions - UV Protection Required</span>
       <span class="severe">Severe Conditions - Extra UV Protection Required</span>
   </footer>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="./assets/js/script.js"></script>
 </body>
 </html>
