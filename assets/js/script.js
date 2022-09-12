@@ -54,16 +54,16 @@ var getWeather = function (lat, lon) {
             response.json().then(function(data) {
               console.log(data);
                 let imageIcon = document.createElement("img");
-                imageIcon.setAttribute("src", "http://openweathermap.org/img/wn/"+ data.current.weather[0].icon +"@2x.png");
+                imageIcon.setAttribute("src", "https://openweathermap.org/img/wn/"+ data.current.weather[0].icon +"@2x.png");
                 displayCityEl.append(imageIcon);
 
                 for (let i = 1; i < 6; i++) {
                   if (!document.getElementById("icon" + i).firstChild) {
                     let weatherIcon = document.createElement("img");
-                    weatherIcon.setAttribute("src", "http://openweathermap.org/img/wn/"+ data.daily[i].weather[0].icon +"@2x.png");
+                    weatherIcon.setAttribute("src", "https://openweathermap.org/img/wn/"+ data.daily[i].weather[0].icon +"@2x.png");
                     document.getElementById("icon" + i).append(weatherIcon);
                   } else {
-                    document.getElementById("icon" + i).firstChild.src = "http://openweathermap.org/img/wn/"+ data.daily[i].weather[0].icon +"@2x.png"
+                    document.getElementById("icon" + i).firstChild.src = "https://openweathermap.org/img/wn/"+ data.daily[i].weather[0].icon +"@2x.png"
                   }
                 }
 
